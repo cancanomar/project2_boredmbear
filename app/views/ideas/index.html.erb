@@ -1,0 +1,24 @@
+<style>
+  body { background-image: url("<%= asset_path('bear_placeholder.jpg') %>") }
+</style>
+<h1>
+  I want to do something...
+</h1>
+
+<form class="field" action="/ideas/random" method="get">
+  <%  @categories.each do |category| %>
+  <div class="field">
+    <input type="checkbox" name= "<%= category.id %>" />
+    <label class="checkbox" for=" <%= category.id %>" >
+      <%= category.name %>
+	  </label>
+  </div>
+  <% end %>
+
+  <div class="field">
+		<button type="submit" value="submit">give me some ideas</button>
+  </div>
+</form>
+<br>
+<br>
+<p><%= link_to "I have an idea!", new_idea_path %></p>

@@ -1,0 +1,12 @@
+<h2>lightbulb!</h2>
+
+<%= form_for @idea do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+<br>
+<br>
+  <%= f.select :category, ['inside', 'food', 'friends', 'flashy', 'crazy', 'art', 'outside'] %>
+<br>
+<br>
+  <%= f.submit "an idea is born" %>
+<% end %>
