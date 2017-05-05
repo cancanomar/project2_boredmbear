@@ -1,33 +1,26 @@
-<!-- <h2>edit this idea</h2>
-<br>
-<%= form_for @idea do |f| %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-
-  <%= f.select :category, ['inside', 'food', 'friends', 'flashy', 'crazy', 'art', 'outside'] %>
-
-  <%= f.submit "idea'd!" %>
-<% end %> -->
-
-
 <h2>change this idea</h2>
 <br>
-<%= form_for @idea, url: "/idea/#{@idea.category_id}", method: :put do |f| %>
+<%= form_for @idea, method: :put do |f| %>
+  <%# In this case, you don't need to define url: in the form_for, it will construct
+  that automatically based on @idea %>
   <%= f.label :description %>
   <%= f.text_field :description %>
 <br>
-<%= f.select :name, :category, {
-  1 => 'inside',
-  2 => 'food',
-  3 => 'friends',
-  4 => 'flashy',
-  5 => 'crazy',
-  6 => 'art',
-  7 => 'outside'] %>
+<%= f.select :category_id, {
+  'inside' => 1,
+  'outside' => 2,
+  'food' => 3,
+  'friends' => 4,
+  'flashy' => 5,
+  'crazy' => 6,
+  'art' => 7
+} %>
+<%# Very close, but you want to put what is to be displayed first, then the value second
+for each option in the select %>
 <br>
   <%= f.submit "idea it" %>
 <% end %>
 
-<%= form_for @idea, url: "/idea/#{@idea.category_id}", method: :delete do |f| %>
+<%= form_for @idea, method: :delete do |f| %>
   <% f.submit "get rid of it", class: "btn-delete" %>
 <% end %>
