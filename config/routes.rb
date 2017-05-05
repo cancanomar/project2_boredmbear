@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
   get    '/'  => 'ideas#index'
-  # get    '/ideas/new'  => 'ideas#new'
-  # get    '/ideas/random'  => 'ideas#show'
-  # post   '/ideas'  => 'ideas#create'
-  # get    '/ideas/:id/edit'  => 'ideas#edit'
-  # put    '/ideas/:id'  => 'ideas#update'
-  # delete '/ideas/:id'  => 'ideas#destroy'
-  resources :ideas
+
+  # The above could also be done with:
+  # root to: 'ideas#index'
+
+  resources :ideas, except: [:show] do
+    collection do
+      get 'random', action: 'show'
+    end
+  end
+
+  # Because your app doesn't have navigation to specific ideas (they are randomly
+  # selected), you would need to use:
+  # - the except: modifier to not include show
+  # - a custom route for the show view using `collection do`
 end

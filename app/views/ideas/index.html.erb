@@ -1,11 +1,15 @@
 <style>
   body { background-image: url("<%= asset_path('bear_placeholder.jpg') %>") }
+  <%# Good use of dynamic styling and the Rails assets pipeline %>
 </style>
 <h1>
   I want to do something...
 </h1>
 
 <form class="field" action="/ideas/random" method="get">
+  <%# Since you changed your routes.rb file to use `resources :ideas`, you need
+  to update the action attribute on this form. Also, you could use the Rails form
+  helpers like form_tag %>
   <%  @categories.each do |category| %>
   <div class="field">
     <input type="checkbox" name= "<%= category.id %>" />

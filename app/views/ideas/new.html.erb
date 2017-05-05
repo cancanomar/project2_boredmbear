@@ -5,7 +5,16 @@
   <%= f.text_field :description %>
 <br>
 <br>
-  <%= f.select :category, ['inside', 'food', 'friends', 'flashy', 'crazy', 'art', 'outside'] %>
+<%# You would want to have this define the :category_id, not :category %>
+<%= f.select :category_id, {
+  'inside' => 1,
+  'outside' => 2,
+  'food' => 3,
+  'friends' => 4,
+  'flashy' => 5,
+  'crazy' => 6,
+  'art' => 7
+} %>
 <br>
 <br>
   <%= f.submit "an idea is born" %>

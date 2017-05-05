@@ -66,8 +66,7 @@ input[type="checkbox"] {
 
 
 button {
-  border-radius: 5;
-  border-radius: 5;
+  /*Be careful for repetitive code*/
   border-radius: 5px;
   color: #ffffff;
   font-size: 20px;
@@ -75,8 +74,12 @@ button {
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   align-content: flex-start;
+  /*To use align-content: flex-start, you have to make the button a flex container
+  with display: flex*/
 }
 
 button:hover {
   text-decoration: underline;
 }
+
+/*Overall, nice clean styling and layout. */

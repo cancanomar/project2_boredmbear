@@ -2,7 +2,6 @@ class IdeasController < ApplicationController
 # index
   def index
     @categories = Category.all
-
   end
 
   # show
@@ -14,7 +13,9 @@ class IdeasController < ApplicationController
       acc
     end
     @category = @categories.sample
-    @idea = @category.ideas.find(params[:id])
+    @idea = @category.ideas.sample
+    # Since we're randomly selecting an idea, there is no params[:id] to search on.
+    # Instead, use .sample
   end
 
   # new
@@ -37,18 +38,23 @@ class IdeasController < ApplicationController
   def update
     @idea = Idea.find(params[:id])
     @idea.update(idea_params)
-    redirect_to "/ideas/#{@idea.id}"
+    redirect_to "/ideas"
+    # You can't redirect to a '/ideas/@idea.id' because the show action is currently
+    # being used for randomly selecting an id. You would need to set up a separate
+    # controller action (maybe 'random') to handle random selection to free up 'show'
+    # for navigation to a specific idea.
   end
 
   # destroy
   def destroy
     @idea = Idea.find(params[:id])
     @idea.destroy
-    redirect_to "/idea"
+    redirect_to "/ideas"
   end
 
   private
   def idea_params
-    params.require(:idea).permit(:description, :category)
+    params.require(:idea).permit(:description, :category_id)
+    # You would want to permit in :category_id instead of :category
   end
 end
